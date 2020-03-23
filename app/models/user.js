@@ -23,9 +23,9 @@ module.exports = (sequelize, Sequelize) => {
         { timestamps: false, tableName: "users"});
 
 
-    // User.associate = function(models) {
-    //     User.belongsTo(models.tutorials, {foreignKey: 'tutorialId', as: 'tutorials'})
-    // };
+    User.associate = function(models) {
+        User.belongsTo(models.tutorials, {foreignKey: 'idUser'})
+    };
 
     return User;
 };

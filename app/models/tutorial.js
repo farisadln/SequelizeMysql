@@ -20,7 +20,7 @@ module.exports = (sequelize, Sequelize) => {
     , { timestamps: false, tableName: "tutorials" });
 
     Tutorial.associate = function(models) {
-        Tutorial.belongsTo(models.tutorials, {foreignKey: 'tutorialId', as: 'tutorials'})
+        Tutorial.hasOne(models.users, {foreignKey: 'id', as: 'tutorialId'})
     };
 
 

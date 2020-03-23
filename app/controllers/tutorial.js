@@ -63,6 +63,7 @@ exports.findAll = (req,res)=>{
                     err.message || "Some error occurred while retrieving tutorials."
             });
         });
+
 };
 
 exports.update = (req, res) => {
