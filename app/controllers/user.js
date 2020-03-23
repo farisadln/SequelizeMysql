@@ -1,5 +1,8 @@
 const db = require('../models');
+const models = require('../models');
+// const Tutorial = require('./tutorial');
 
+const Tutorial =models.tutorials ;
 const User = db.users;
 const Op = db.sequelize.Op;
 
@@ -28,12 +31,14 @@ exports.create = (req,res)=>{
 
 };
 
+
 exports.findAll = (req,res)=>{
     const user = req.query.user;
     let condition = user ? { user: { [Op.like]: `%${user}%` } } : null;
 
-    User.findAll({ where: condition })
+    User.findAll({ where: condition  })
         .then(data => {
+            console.log(data);
             res.send(data);
         })
         .catch(err => {

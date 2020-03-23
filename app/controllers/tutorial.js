@@ -1,4 +1,7 @@
 const db = require('../models');
+const models = require('../models');
+
+const Users = models.users ;
 
 const Tutorial = db.tutorials;
 const User = db.users;
@@ -29,9 +32,10 @@ exports.create = (req,res)=>{
         });
 };
 
+
+
 exports.findOne = (req, res) => {
     const id = req.params.id;
-
     Tutorial.findByPk(id)
         .then(data => {
             res.send(data);
@@ -44,11 +48,12 @@ exports.findOne = (req, res) => {
 };
 
 
+
 exports.findAll = (req,res)=>{
     const title = req.query.title;
     var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
 
-    Tutorial.findAll({ where: condition })
+    Tutorial.findAll({ where: condition , include: Users })
         .then(data => {
             res.send(data);
         })
